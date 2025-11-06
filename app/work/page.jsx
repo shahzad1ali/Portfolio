@@ -18,7 +18,7 @@ import Image from "next/image";
 const projects = [
   {
     num: "01",
-    category: "Mern Stack",
+    category: "Full Stack",
     title: "E-commerce Website",
     description: "Developed a full-stack e-commerce platform using the MERN stack with product buying and selling features.Integrated Google authentication, multiple payment methods (Stripe, PayPal, cash), and token-based user verification.Enhanced scalability by creating a reusable custom NPM package and managing state with Redux.",
     stack: [{ name: "React" },{ name: "Tailwind.css" },{ name: "Node.js" }],
@@ -28,7 +28,7 @@ const projects = [
   },
    {
     num: "02",
-    category: "Mern Stack",
+    category: "Full Stack",
     title: "E-Learning Website",
     description: "Developed a comprehensive LMS using Next.js and TypeScript with Shadcn for responsive UI.Implemented Google/GitHub login, token-based verification, and OTP-based authentication.Integrated Stripe for paid courses with multi-payment support (cards, PayPal, cash).Built admin dashboards for course creation, video uploads, messaging, reviews, and analytics.",
     stack: [{ name: "Next.js" },{ name: "Tailwind.css" },{ name: "Typescript" },{ name: "RTQ" },{ name: "Node.js" }],
@@ -38,7 +38,7 @@ const projects = [
   },
    {
     num: "03",
-    category: "Mern Stack",
+    category: "Mobile App",
     title: "Mobile-movie App",
     description: "Developed a React Native app (Expo) with movie browsing, search, and watch functionality.Integrated Google OAuth for secure authentication and personalized access.Featured top-rated movies and ensured newly added titles appear at the top.",
     stack: [{ name: "ReactNative" },{ name: "Tailwind.css" },{ name: "typescript" }],
@@ -76,6 +76,26 @@ const projects = [
     live: "https://chain-cross-app.vercel.app/",
     github: 'https://github.com/shahzad1ali/Chain-Cross-App',
   },
+   {
+    num: "07",
+    category: "Frontend",
+    title: "AltCabs",
+    description: "Developed the user interface of a cab fare comparison app using React Native (Expo) and Tailwind CSS. Designed screens for entering trip details, selecting passengers, and viewing fare quotations. Focused on creating a clean, responsive, and user-friendly mobile experience",
+    stack: [{ name: "ReactNative" },{ name: "Tailwind.css" },{ name: "typescript" }],
+    image: "/assets/projects/altcabs.png",
+    live: "https://chain-cross-app.vercel.app/",
+    github: 'https://github.com/dev-numan/altcabs-app-mirror/',
+  },
+    {
+    num: "08",
+    category: "Full Stack",
+    title: "Up-Invest",
+    description: "Developed a cross-platform React Native and Web app delivering real-time stock market analytics and visual insights for 1,000+ active users. Integrated multiple financial APIs using Context API to provide accurate, live market data. Implemented interactive charts and analytics dashboards, empowering users to make data-driven trading decisions.",
+    stack: [{ name: "ReactNative" },{ name: "Tailwind.css" },{ name: "typescript" }],
+    image: "/assets/projects/up-invest.png",
+    live: "https://app.upinvest.pk/auth/signin",
+    github: 'https://github.com',
+  },
 ]
 
 export default function Work() {
@@ -98,9 +118,23 @@ export default function Work() {
     <motion.section
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 , transition: {delay: 2.4, duration: 0.6, ease: 'easeIn'} }}
-    className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0"
+    className="min-h-[80vh] flex flex-col justify-center xl:px-0"
     >
      <div className="container mx-auto">
+      {/* Section Title */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 0.2, duration: 0.4, ease: "easeIn" },
+        }}
+        className="xl:mb-12 pt-4 xl:pt-8 text-center"
+      >
+        <h2 className="text-4xl xl:text-5xl font-bold text-white hover:text-accent transition-colors duration-300">
+          Work
+        </h2>
+      </motion.div>
       <div className="flex flex-col xl:flex-row xl:gap-[30px]">
         {/* Project Details - Left Side */}
         <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
@@ -138,8 +172,8 @@ export default function Work() {
             <Link href={project.live}>
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
-                  <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10 transition-all duration-300">
-                    <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                  <TooltipTrigger className="lg:w-[70px] lg:h-[70px] h-[50px] w-[50px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10 transition-all duration-300">
+                    <BsArrowUpRight className="text-white text-2xl lg:text-3xl group-hover:text-accent" />
                   </TooltipTrigger>
                   <TooltipContent className='bg-white text-black'>
                     <p>Live project</p>
@@ -152,8 +186,8 @@ export default function Work() {
             <Link href={project.github}>
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
-                  <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10 transition-all duration-300">
-                    <BsGithub className="text-white text-3xl group-hover:text-accent" />
+                  <TooltipTrigger className="lg:w-[70px] lg:h-[70px] h-[50px] w-[50px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10 transition-all duration-300">
+                    <BsGithub className="text-white text-2xl lg:text-3xl group-hover:text-accent" />
                   </TooltipTrigger>
                   <TooltipContent className='bg-white text-black'>
                     <p>Github repository</p>

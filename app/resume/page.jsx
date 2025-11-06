@@ -1,6 +1,5 @@
 "use client";
 
-import { info } from "autoprefixer";
 import {
   FaHtml5,
   FaCss3,
@@ -183,9 +182,23 @@ const Resume = () => {
     opacity: 1,
     transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
   }}
-  className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0"
+  className="min-h-[80vh] flex items-center justify-center xl:py-0"
 >
   <div className="container mx-auto">
+    {/* Section Title */}
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        transition: { delay: 0.2, duration: 0.4, ease: "easeIn" },
+      }}
+      className="xl:mb-16 pt-4 xl:pt-8 text-center"
+    >
+      <h2 className="text-4xl mb-6 lg:mb-0 xl:text-5xl font-bold text-white hover:text-accent transition-colors duration-300">
+     Experience
+      </h2>
+    </motion.div>
     <Tabs
       defaultValue="experience"
       className="flex flex-col xl:flex-row gap-[60px]"

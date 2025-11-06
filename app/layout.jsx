@@ -32,7 +32,10 @@ export default function RootLayout({ children }) {
       <body
         className={jetBrainsMono.variable}
       >
-        <Header />
+       <div className="fixed !top-0 left-0 w-full z-[9999]">
+  <Header />
+</div>
+
         <StairTransition />
         <PageTransition >
         {children}

@@ -28,6 +28,21 @@ const Services = () => {
   return (
 <section className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0">
   <div className="container mx-auto">
+    {/* Section Title */}
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        transition: { delay: 0.2, duration: 0.4, ease: "easeIn" },
+      }}
+      className="mb-12 xl:mb-16 pt-16 xl:pt-24 text-center"
+    >
+      <h2 className="text-4xl xl:text-5xl font-bold text-white hover:text-accent transition-colors duration-300">
+        Services
+      </h2>
+    </motion.div>
+    
     <motion.div
       initial={{ opacity: 0 }}
       animate={{
@@ -44,14 +59,14 @@ const Services = () => {
               <div className="text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500">{service.num}
               </div>
               <Link href={service.href}
-              className="w-[70px] h-[70px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:rotate-45"
+              className="lg:w-[70px] lg:h-[70px] w-[50px] h-[50px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:rotate-45"
               >
-              <BsArrowDownRight className="text-primary text-3xl" />
+              <BsArrowDownRight className="text-primary text-2xl lg:text-3xl" />
               </Link>
             </div>
             {/* title  */}
             <h2
-            className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500"
+            className="text-[30px] lg:text-[38px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500"
             >{service.title}</h2>
             {/* description  */}
             <p>{service.description} </p>
