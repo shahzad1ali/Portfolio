@@ -47,7 +47,7 @@ const Home = () => {
                     loop={true}
                     cursor
                     cursorStyle=""
-                    typeSpeed={300}
+                    typeSpeed={400}
                     deleteSpeed={200}
                     delaySpeed={1000}
                   />
