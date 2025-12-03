@@ -16,15 +16,15 @@ import Link from "next/link";
 import Image from "next/image";
 
 const projects = [
-  {
+   {
     num: "01",
     category: "Full Stack",
-    title: "E-commerce Website",
-    description: "Developed a full-stack e-commerce platform using the MERN stack with product buying and selling features.Integrated Google authentication, multiple payment methods (Stripe, PayPal, cash), and token-based user verification.Enhanced scalability by creating a reusable custom NPM package and managing state with Redux.",
-    stack: [{ name: "React" },{ name: "Tailwind.css" },{ name: "Node.js" }],
-    image: "/assets/projects/e-shop.png",
-    live: "https://e-shop-zeta-indol.vercel.app/",
-    github: 'https://github.com/shahzad1ali/multivendor',
+    title: "Up-Invest",
+    description: "Developed a cross-platform React Native and Web app delivering real-time stock market analytics and visual insights for 1,000+ active users. Integrated multiple financial APIs using Context API to provide accurate, live market data. Implemented interactive charts and analytics dashboards, empowering users to make data-driven trading decisions.",
+    stack: [{ name: "ReactNative" },{ name: "Tailwind.css" },{ name: "typescript" }],
+    image: "/assets/projects/up-invest.png",
+    live: "https://app.upinvest.pk/auth/signin",
+    github: 'https://github.com',
   },
    {
     num: "02",
@@ -86,15 +86,15 @@ const projects = [
     live: "https://chain-cross-app.vercel.app/",
     github: 'https://github.com/dev-numan/altcabs-app-mirror/',
   },
-    {
+   {
     num: "08",
     category: "Full Stack",
-    title: "Up-Invest",
-    description: "Developed a cross-platform React Native and Web app delivering real-time stock market analytics and visual insights for 1,000+ active users. Integrated multiple financial APIs using Context API to provide accurate, live market data. Implemented interactive charts and analytics dashboards, empowering users to make data-driven trading decisions.",
-    stack: [{ name: "ReactNative" },{ name: "Tailwind.css" },{ name: "typescript" }],
-    image: "/assets/projects/up-invest.png",
-    live: "https://app.upinvest.pk/auth/signin",
-    github: 'https://github.com',
+    title: "E-commerce Website",
+    description: "Developed a full-stack e-commerce platform using the MERN stack with product buying and selling features.Integrated Google authentication, multiple payment methods (Stripe, PayPal, cash), and token-based user verification.Enhanced scalability by creating a reusable custom NPM package and managing state with Redux.",
+    stack: [{ name: "React" },{ name: "Tailwind.css" },{ name: "Node.js" }],
+    image: "/assets/projects/e-shop.png",
+    live: "https://e-shop-zeta-indol.vercel.app/",
+    github: 'https://github.com/shahzad1ali/multivendor',
   },
 ]
 
