@@ -16,12 +16,6 @@ const services = [
     description: 'Designing intuitive and user-friendly interfaces that enhance user experience.Focusing on responsive layouts, accessibility, and modern design principles.Transforming ideas into engaging digital products with seamless usability.',
     href: ''
   },
-    {
-    num: '03',
-    title: 'Logo Design',
-    description: 'Designed creative and professional logos that reflect brand identity.Focused on simplicity, uniqueness, and timeless visual appeal.Delivered versatile designs adaptable for both digital and print use',
-    href: ''
-  },
 ];
 
 const Services = () => {
