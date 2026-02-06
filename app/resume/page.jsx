@@ -19,7 +19,7 @@ import {
 // about data
 const about = {
   title: "About Me",
-  description: 'Mern Stack Developer with 1 year of experience in building scalable Mern-stack applications using MERN. Developed projects like a real-time mentorship platform, secure LMS.Many projects there in my github',
+  description: 'Mern Stack Developer with 1+ year of experience in building scalable Mern-stack applications using MERN. Developed projects like a real-time mentorship platform, secure LMS.Many projects there in my github',
   info: [
     {
       fieldName: "Name",
