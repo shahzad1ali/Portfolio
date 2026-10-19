@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import { BsArrowUpRight, BsGithub } from "react-icons/bs";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
@@ -16,8 +16,46 @@ import Link from "next/link";
 import Image from "next/image";
 
 const projects = [
-   {
+  {
     num: "01",
+    category: "Full Stack",
+    title: "InstallSync",
+    description: "InstallSync connects customers who need a job done with nearby installers. Customers create jobs, and eligible installers receive push notifications based on the service radius in their profiles and their availability; blocked time keeps them from being shown jobs when they are unavailable. Installers can submit bids, customers can accept a proposal, and the installer can start and complete the job. Real-time socket messaging supports communication throughout the process, with Firebase web push notifications using a VAPID key and SMTP email notifications.",
+    stack: [
+      { name: "React" },
+      { name: "shadcn/ui" },
+      { name: "Tailwind CSS" },
+      { name: "Redux" },
+      { name: "Leaflet" },
+      { name: "Django" },
+      { name: "MySQL" },
+      { name: "WebSockets" },
+      { name: "Firebase VAPID" },
+      { name: "SMTP" },
+    ],
+    image: "/assets/projects/Installsync.png",
+    live: "https://app.installsync.com/auth/signin",
+    github: "",
+  },
+  {
+    num: "02",
+    category: "Full Stack",
+    title: "Driver Transportation",
+    description: "Built a driver onboarding and transportation management platform where administrators invite drivers by email. Drivers receive an invitation link and complete a 17-step application with their personal and contact details, driver's license and related documents, and signature. Administrators review submitted applications and, after approval, can assign loads to drivers. Brevo handles invitation emails.",
+    stack: [
+      { name: "Next.js" },
+      { name: "shadcn/ui" },
+      { name: "Tailwind CSS" },
+      { name: "Node.js" },
+      { name: "MySQL" },
+      { name: "Brevo" },
+    ],
+    image: "/assets/projects/driver-transportation.png",
+    live: "",
+    github: "",
+  },
+  {
+    num: "03",
     category: "Full Stack",
     title: "Up-Invest",
     description: "Developed a cross-platform React Native and Web app delivering real-time stock market analytics and visual insights for 1,000+ active users. Integrated multiple financial APIs using Context API to provide accurate, live market data. Implemented interactive charts and analytics dashboards, empowering users to make data-driven trading decisions.",
@@ -27,7 +65,7 @@ const projects = [
     github: 'https://github.com',
   },
    {
-    num: "02",
+    num: "04",
     category: "Full Stack",
     title: "E-Learning Website",
     description: "Developed a comprehensive LMS using Next.js and TypeScript with Shadcn for responsive UI.Implemented Google/GitHub login, token-based verification, and OTP-based authentication.Integrated Stripe for paid courses with multi-payment support (cards, PayPal, cash).Built admin dashboards for course creation, video uploads, messaging, reviews, and analytics.",
@@ -37,7 +75,7 @@ const projects = [
     github: 'https://github.com/shahzad1ali/LMS-server',
   },
    {
-    num: "03",
+    num: "05",
     category: "Mobile App",
     title: "Mobile-movie App",
     description: "Developed a React Native app (Expo) with movie browsing, search, and watch functionality.Integrated Google OAuth for secure authentication and personalized access.Featured top-rated movies and ensured newly added titles appear at the top.",
@@ -47,7 +85,7 @@ const projects = [
     github: 'https://github.com/shahzad1ali/Mobile-Movie-App',
   },
   {
-    num: "04",
+    num: "06",
     category: "Frontend",
     title: "Gym and Yoga App",
     description: "Created a React.js + Tailwind CSS Gym app showcasing yoga and workout classes.Used Framer Motion to add dynamic, interactive animations.Delivered a responsive and visually appealing design.",
@@ -57,7 +95,7 @@ const projects = [
     github: 'https://github.com/shahzad1ali/Gym-Project',
   },
   {
-    num: "05",
+    num: "07",
     category: "Frontend",
     title: "MindLeap",
     description: "A MindLeap web application built with React, Vite, and TailwindCSS to display stylish chair products with a clean and responsive UI. It includes smooth animations using Framer Motion, tab-based navigation with React Tabs, and reusable components for a seamless browsing experience.",
@@ -67,7 +105,7 @@ const projects = [
     github: 'https://github.com/shahzad1ali/mindleap-react-app',
   },
   {
-    num: "06",
+    num: "08",
     category: "Frontend",
     title: "ChainCross",
     description: "Developed CrossChain Frontend using React, Vite, and Tailwind CSS for high performance and responsive UI.Built specifically for the Solana ecosystem with features like token launches, vesting, and staking.Focused on security, decentralization, and community trust.",
@@ -77,7 +115,7 @@ const projects = [
     github: 'https://github.com/shahzad1ali/Chain-Cross-App',
   },
    {
-    num: "07",
+    num: "09",
     category: "Frontend",
     title: "AltCabs",
     description: "Developed the user interface of a cab fare comparison app using React Native (Expo) and Tailwind CSS. Designed screens for entering trip details, selecting passengers, and viewing fare quotations. Focused on creating a clean, responsive, and user-friendly mobile experience",
@@ -87,7 +125,7 @@ const projects = [
     github: 'https://github.com/dev-numan/altcabs-app-mirror/',
   },
    {
-    num: "08",
+    num: "10",
     category: "Full Stack",
     title: "E-commerce Website",
     description: "Developed a full-stack e-commerce platform using the MERN stack with product buying and selling features.Integrated Google authentication, multiple payment methods (Stripe, PayPal, cash), and token-based user verification.Enhanced scalability by creating a reusable custom NPM package and managing state with Redux.",
@@ -101,6 +139,14 @@ const projects = [
 export default function Work() {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const project = projects[currentProjectIndex];
+  const projectTextVariants = {
+    hidden: { opacity: 0, y: 14 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.35, ease: "easeOut" },
+    },
+  };
 
   const handlePrevious = () => {
     setCurrentProjectIndex((prev) => 
@@ -137,39 +183,46 @@ export default function Work() {
       </motion.div>
       <div className="flex flex-col xl:flex-row xl:gap-[30px]">
         {/* Project Details - Left Side */}
-        <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
+        <AnimatePresence mode="wait">
+        <motion.div
+          key={project.title}
+          initial="hidden"
+          animate="visible"
+          exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
+          className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none"
+        >
           {/* outline num */}
-          <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
+          <motion.div variants={projectTextVariants} className="text-8xl leading-none font-extrabold text-transparent text-outline">
             {project.num}
-          </div>
+          </motion.div>
           {/* project category */}
-          <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
+          <motion.h2 variants={projectTextVariants} className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
             {project.category} project
-          </h2>
+          </motion.h2>
           {/* project title */}
-          <h3 className="text-2xl font-semibold text-accent mb-2">
+          <motion.h3 variants={projectTextVariants} className="text-2xl font-semibold text-accent mb-2">
             {project.title}
-          </h3>
+          </motion.h3>
           {/* project description */}
-          <p className="text-white/60 text-lg leading-relaxed">{project.description}</p>
+          <motion.p variants={projectTextVariants} className="text-white/60 text-lg leading-relaxed">{project.description}</motion.p>
           
           {/* stack */}
-          <div className="flex flex-wrap pt-4 pb-4 gap-2">
+          <motion.div variants={projectTextVariants} className="flex flex-wrap pt-4 pb-4 gap-2">
             {project.stack.map((tech, index) => (
               <span key={index} className="text-accent text-sm font-medium">
                 {tech.name}
                 {index < project.stack.length - 1 && ', '}
               </span>
             ))}
-          </div>
+          </motion.div>
           
           {/* border */}
           <div className="border border-white/20 w-full"></div>
           
           {/* buttons */}
-          <div className="flex items-center gap-4 mt-4">
+          <motion.div variants={projectTextVariants} className="flex items-center gap-4 mt-4">
             {/* Live Project button  */}
-            <Link href={project.live}>
+            {project.live && <Link href={project.live} target="_blank" rel="noopener noreferrer">
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger className="lg:w-[70px] lg:h-[70px] h-[50px] w-[50px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10 transition-all duration-300">
@@ -180,10 +233,10 @@ export default function Work() {
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-            </Link>
+            </Link>}
 
             {/* Github Project button  */}
-            <Link href={project.github}>
+            {project.github && <Link href={project.github} target="_blank" rel="noopener noreferrer">
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger className="lg:w-[70px] lg:h-[70px] h-[50px] w-[50px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10 transition-all duration-300">
@@ -194,9 +247,10 @@ export default function Work() {
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-            </Link>
-          </div>
-        </div>
+            </Link>}
+          </motion.div>
+        </motion.div>
+        </AnimatePresence>
 
         {/* Fixed Image - Right Side */}
         <div className="w-full xl:w-[65%] relative">
@@ -217,12 +271,16 @@ export default function Work() {
               {/* Navigation Buttons - Left Bottom of Image */}
               <div className="absolute left-0 bottom-0 flex gap-2 z-20">
                 <button 
+                  type="button"
+                  aria-label="Previous project"
                   className="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
                   onClick={handlePrevious}
                 >
                   <PiCaretLeftBold />
                 </button>
                 <button 
+                  type="button"
+                  aria-label="Next project"
                   className="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
                   onClick={handleNext}
                 >

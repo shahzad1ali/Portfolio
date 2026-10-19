@@ -57,7 +57,7 @@ const experience = {
   icon: "/assets/resume/Shahzad.pdf",
   title: "My experience",
   description:
-    "I have 1 year of hands-on experience in delivering creative and efficient solutions.From design to development, I’ve contributed to real-world projects.Im constantly learning and growing with each opportunity.",
+    "I have 2 year of hands-on experience in delivering creative and efficient solutions.From design to development, I’ve contributed to real-world projects.Im constantly learning and growing with each opportunity.",
   items: [
     {
       company: "Tech Solutions Inc.",

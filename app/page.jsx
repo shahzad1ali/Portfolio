@@ -55,7 +55,7 @@ const Home = () => {
               </h1>
 
               <p className="max-w-[500px] mb-9 text-white/80">
-                Mern Stack Developer with 1 year of experience in building scalable Mern-stack applications using MERN. Developed
+                Full Stack Developer with 2 year of experience in building scalable Mern-stack applications using MERN. Developed
                 projects like a real-time mentorship platform, secure LMS. Skilled in RESTful API payment gateways, and real-time features.
                 Passionate about solving complex problems and delivering innovative, user-focused solutions.
               </p>
