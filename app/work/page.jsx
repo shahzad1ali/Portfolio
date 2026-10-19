@@ -1,297 +1,224 @@
-'use client'
+"use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { BsArrowUpRight, BsGithub } from "react-icons/bs";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
+import { projects } from "@/lib/projects";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
-import Link from "next/link";
-import Image from "next/image";
-
-const projects = [
-  {
-    num: "01",
-    category: "Full Stack",
-    title: "InstallSync",
-    description: "InstallSync connects customers who need a job done with nearby installers. Customers create jobs, and eligible installers receive push notifications based on the service radius in their profiles and their availability; blocked time keeps them from being shown jobs when they are unavailable. Installers can submit bids, customers can accept a proposal, and the installer can start and complete the job. Real-time socket messaging supports communication throughout the process, with Firebase web push notifications using a VAPID key and SMTP email notifications.",
-    stack: [
-      { name: "React" },
-      { name: "shadcn/ui" },
-      { name: "Tailwind CSS" },
-      { name: "Redux" },
-      { name: "Leaflet" },
-      { name: "Django" },
-      { name: "MySQL" },
-      { name: "WebSockets" },
-      { name: "Firebase VAPID" },
-      { name: "SMTP" },
-    ],
-    image: "/assets/projects/Installsync.png",
-    live: "https://app.installsync.com/auth/signin",
-    github: "",
+const textVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" },
   },
-  {
-    num: "02",
-    category: "Full Stack",
-    title: "Driver Transportation",
-    description: "Built a driver onboarding and transportation management platform where administrators invite drivers by email. Drivers receive an invitation link and complete a 17-step application with their personal and contact details, driver's license and related documents, and signature. Administrators review submitted applications and, after approval, can assign loads to drivers. Brevo handles invitation emails.",
-    stack: [
-      { name: "Next.js" },
-      { name: "shadcn/ui" },
-      { name: "Tailwind CSS" },
-      { name: "Node.js" },
-      { name: "MySQL" },
-      { name: "Brevo" },
-    ],
-    image: "/assets/projects/driver-transportation.png",
-    live: "",
-    github: "",
-  },
-  {
-    num: "03",
-    category: "Full Stack",
-    title: "Up-Invest",
-    description: "Developed a cross-platform React Native and Web app delivering real-time stock market analytics and visual insights for 1,000+ active users. Integrated multiple financial APIs using Context API to provide accurate, live market data. Implemented interactive charts and analytics dashboards, empowering users to make data-driven trading decisions.",
-    stack: [{ name: "ReactNative" },{ name: "Tailwind.css" },{ name: "typescript" }],
-    image: "/assets/projects/up-invest.png",
-    live: "https://app.upinvest.pk/auth/signin",
-    github: 'https://github.com',
-  },
-   {
-    num: "04",
-    category: "Full Stack",
-    title: "E-Learning Website",
-    description: "Developed a comprehensive LMS using Next.js and TypeScript with Shadcn for responsive UI.Implemented Google/GitHub login, token-based verification, and OTP-based authentication.Integrated Stripe for paid courses with multi-payment support (cards, PayPal, cash).Built admin dashboards for course creation, video uploads, messaging, reviews, and analytics.",
-    stack: [{ name: "Next.js" },{ name: "Tailwind.css" },{ name: "Typescript" },{ name: "RTQ" },{ name: "Node.js" }],
-    image: "/assets/projects/lms.png",
-    live: "https://lms-rosy-omega.vercel.app/",
-    github: 'https://github.com/shahzad1ali/LMS-server',
-  },
-   {
-    num: "05",
-    category: "Mobile App",
-    title: "Mobile-movie App",
-    description: "Developed a React Native app (Expo) with movie browsing, search, and watch functionality.Integrated Google OAuth for secure authentication and personalized access.Featured top-rated movies and ensured newly added titles appear at the top.",
-    stack: [{ name: "ReactNative" },{ name: "Tailwind.css" },{ name: "typescript" }],
-    image: "/assets/projects/mobile-app.jpg",
-    live: "",
-    github: 'https://github.com/shahzad1ali/Mobile-Movie-App',
-  },
-  {
-    num: "06",
-    category: "Frontend",
-    title: "Gym and Yoga App",
-    description: "Created a React.js + Tailwind CSS Gym app showcasing yoga and workout classes.Used Framer Motion to add dynamic, interactive animations.Delivered a responsive and visually appealing design.",
-    stack: [{ name: "React.js" },{ name: "Tailwind.css" },{ name: "javascript" }],
-    image: "/assets/projects/yoga.png",
-    live: "https://gym-project-snowy.vercel.app/",
-    github: 'https://github.com/shahzad1ali/Gym-Project',
-  },
-  {
-    num: "07",
-    category: "Frontend",
-    title: "MindLeap",
-    description: "A MindLeap web application built with React, Vite, and TailwindCSS to display stylish chair products with a clean and responsive UI. It includes smooth animations using Framer Motion, tab-based navigation with React Tabs, and reusable components for a seamless browsing experience.",
-    stack: [{ name: "React.js" },{ name: "Tailwind.css" },{ name: "javascript" }],
-    image: "/assets/projects/mindleap.png",
-    live: "https://mindleap-react-app-black.vercel.app/",
-    github: 'https://github.com/shahzad1ali/mindleap-react-app',
-  },
-  {
-    num: "08",
-    category: "Frontend",
-    title: "ChainCross",
-    description: "Developed CrossChain Frontend using React, Vite, and Tailwind CSS for high performance and responsive UI.Built specifically for the Solana ecosystem with features like token launches, vesting, and staking.Focused on security, decentralization, and community trust.",
-    stack: [{ name: "React.js" },{ name: "Tailwind.css" },{ name: "javascript" }],
-    image: "/assets/projects/chaincross.png",
-    live: "https://chain-cross-app.vercel.app/",
-    github: 'https://github.com/shahzad1ali/Chain-Cross-App',
-  },
-   {
-    num: "09",
-    category: "Frontend",
-    title: "AltCabs",
-    description: "Developed the user interface of a cab fare comparison app using React Native (Expo) and Tailwind CSS. Designed screens for entering trip details, selecting passengers, and viewing fare quotations. Focused on creating a clean, responsive, and user-friendly mobile experience",
-    stack: [{ name: "ReactNative" },{ name: "Tailwind.css" },{ name: "typescript" }],
-    image: "/assets/projects/altcabs.png",
-    live: "https://chain-cross-app.vercel.app/",
-    github: 'https://github.com/dev-numan/altcabs-app-mirror/',
-  },
-   {
-    num: "10",
-    category: "Full Stack",
-    title: "E-commerce Website",
-    description: "Developed a full-stack e-commerce platform using the MERN stack with product buying and selling features.Integrated Google authentication, multiple payment methods (Stripe, PayPal, cash), and token-based user verification.Enhanced scalability by creating a reusable custom NPM package and managing state with Redux.",
-    stack: [{ name: "React" },{ name: "Tailwind.css" },{ name: "Node.js" }],
-    image: "/assets/projects/e-shop.png",
-    live: "https://e-shop-zeta-indol.vercel.app/",
-    github: 'https://github.com/shahzad1ali/multivendor',
-  },
-]
+};
 
 export default function Work() {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const project = projects[currentProjectIndex];
-  const projectTextVariants = {
-    hidden: { opacity: 0, y: 14 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.35, ease: "easeOut" },
-    },
-  };
 
-  const handlePrevious = () => {
-    setCurrentProjectIndex((prev) => 
-      prev === 0 ? projects.length - 1 : prev - 1
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      if (document.visibilityState === "visible") {
+        setCurrentProjectIndex((current) => (current + 1) % projects.length);
+      }
+    }, 4000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const showPreviousProject = () => {
+    setCurrentProjectIndex((current) =>
+      current === 0 ? projects.length - 1 : current - 1
     );
   };
 
-  const handleNext = () => {
-    setCurrentProjectIndex((prev) => 
-      prev === projects.length - 1 ? 0 : prev + 1
+  const showNextProject = () => {
+    setCurrentProjectIndex((current) =>
+      current === projects.length - 1 ? 0 : current + 1
     );
   };
 
   return (
     <motion.section
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 , transition: {delay: 2.4, duration: 0.6, ease: 'easeIn'} }}
-    className="min-h-[80vh] flex flex-col justify-center xl:px-0"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.55, ease: "easeOut" }}
+      className="px-4 py-12 sm:px-6 sm:py-14 xl:px-0 xl:py-16"
     >
-     <div className="container mx-auto">
-      {/* Section Title */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          transition: { delay: 0.2, duration: 0.4, ease: "easeIn" },
-        }}
-        className="xl:mb-12 pt-4 xl:pt-8 text-center"
-      >
-        <h2 className="text-4xl xl:text-5xl font-bold text-white hover:text-accent transition-colors duration-300">
-          Work
-        </h2>
-      </motion.div>
-      <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-        {/* Project Details - Left Side */}
-        <AnimatePresence mode="wait">
-        <motion.div
-          key={project.title}
-          initial="hidden"
-          animate="visible"
-          exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
-          className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none"
+      <div className="container mx-auto">
+        <motion.header
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+          className="mb-10 text-center xl:mb-14"
         >
-          {/* outline num */}
-          <motion.div variants={projectTextVariants} className="text-8xl leading-none font-extrabold text-transparent text-outline">
-            {project.num}
-          </motion.div>
-          {/* project category */}
-          <motion.h2 variants={projectTextVariants} className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
-            {project.category} project
-          </motion.h2>
-          {/* project title */}
-          <motion.h3 variants={projectTextVariants} className="text-2xl font-semibold text-accent mb-2">
-            {project.title}
-          </motion.h3>
-          {/* project description */}
-          <motion.p variants={projectTextVariants} className="text-white/60 text-lg leading-relaxed">{project.description}</motion.p>
-          
-          {/* stack */}
-          <motion.div variants={projectTextVariants} className="flex flex-wrap pt-4 pb-4 gap-2">
-            {project.stack.map((tech, index) => (
-              <span key={index} className="text-accent text-sm font-medium">
-                {tech.name}
-                {index < project.stack.length - 1 && ', '}
-              </span>
-            ))}
-          </motion.div>
-          
-          {/* border */}
-          <div className="border border-white/20 w-full"></div>
-          
-          {/* buttons */}
-          <motion.div variants={projectTextVariants} className="flex items-center gap-4 mt-4">
-            {/* Live Project button  */}
-            {project.live && <Link href={project.live} target="_blank" rel="noopener noreferrer">
-              <TooltipProvider delayDuration={100}>
-                <Tooltip>
-                  <TooltipTrigger className="lg:w-[70px] lg:h-[70px] h-[50px] w-[50px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10 transition-all duration-300">
-                    <BsArrowUpRight className="text-white text-2xl lg:text-3xl group-hover:text-accent" />
-                  </TooltipTrigger>
-                  <TooltipContent className='bg-white text-black'>
-                    <p>Live project</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </Link>}
+          <p className="mb-3 text-sm uppercase tracking-[0.3em] text-accent">
+            Selected projects
+          </p>
+          <h2 className="text-4xl font-bold sm:text-5xl">Work</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/65 sm:text-base">
+            A selection of full-stack products, mobile experiences, and
+            responsive interfaces. Open a case study to explore the goals,
+            features, and technologies behind each project.
+          </p>
+        </motion.header>
 
-            {/* Github Project button  */}
-            {project.github && <Link href={project.github} target="_blank" rel="noopener noreferrer">
-              <TooltipProvider delayDuration={100}>
-                <Tooltip>
-                  <TooltipTrigger className="lg:w-[70px] lg:h-[70px] h-[50px] w-[50px] rounded-full bg-white/5 flex justify-center items-center group hover:bg-white/10 transition-all duration-300">
-                    <BsGithub className="text-white text-2xl lg:text-3xl group-hover:text-accent" />
-                  </TooltipTrigger>
-                  <TooltipContent className='bg-white text-black'>
-                    <p>Github repository</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </Link>}
-          </motion.div>
-        </motion.div>
-        </AnimatePresence>
+        <div className="grid items-center gap-8 xl:grid-cols-2 xl:gap-12">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={project.slug}
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, y: -12, transition: { duration: 0.18 } }}
+              variants={{
+                visible: {
+                  transition: { staggerChildren: 0.07, delayChildren: 0.04 },
+                },
+              }}
+              className="order-2 flex flex-col gap-5 xl:order-1"
+            >
+              <motion.div
+                variants={textVariants}
+                className="flex items-center gap-4"
+              >
+                <span className="text-6xl font-extrabold leading-none text-transparent text-outline sm:text-7xl">
+                  {project.num}
+                </span>
+                <span className="rounded-full border border-accent/30 bg-accent/5 px-4 py-1 text-xs uppercase tracking-wider text-accent">
+                  {project.category}
+                </span>
+              </motion.div>
 
-        {/* Fixed Image - Right Side */}
-        <div className="w-full xl:w-[65%] relative">
-          <div className="xl:h-[590px] mb-12">
-            <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/20">
-              {/* overlay */}
-              <div className="absolute top-0 bottom-0 w-full h-full bg-primary"></div>
-              {/* image container with proper aspect ratio */}
-              <div className="relative w-full h-full rounded-[8px]">
+              <motion.div variants={textVariants}>
+                <h3 className="text-3xl font-bold leading-tight sm:text-4xl">
+                  {project.title}
+                </h3>
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
+                  {project.description}
+                </p>
+              </motion.div>
+
+              <motion.ul
+                variants={textVariants}
+                aria-label="Technology stack"
+                className="flex flex-wrap gap-2"
+              >
+                {project.stack.map((technology) => (
+                  <li
+                    key={technology}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-accent sm:text-sm"
+                  >
+                    {technology}
+                  </li>
+                ))}
+              </motion.ul>
+
+              <motion.div
+                variants={textVariants}
+                className="mt-2 flex flex-wrap items-center gap-3 border-t border-white/10 pt-5"
+              >
+                <Link
+                  href={`/work/${project.slug}`}
+                  className="interactive-card inline-flex min-h-12 items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  View case study
+                  <BsArrowUpRight aria-hidden="true" />
+                </Link>
+                {project.live && (
+                  <Link
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${project.title} live project in a new tab`}
+                    className="interactive-card inline-flex h-12 w-12 items-center justify-center rounded-full text-white hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  >
+                    <BsArrowUpRight aria-hidden="true" className="text-xl" />
+                  </Link>
+                )}
+                {project.github && (
+                  <Link
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${project.title} GitHub repository in a new tab`}
+                    className="interactive-card inline-flex h-12 w-12 items-center justify-center rounded-full text-white hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  >
+                    <BsGithub aria-hidden="true" className="text-xl" />
+                  </Link>
+                )}
+              </motion.div>
+
+              <motion.div
+                variants={textVariants}
+                className="mt-1 flex flex-wrap items-center gap-3"
+              >
+                <motion.button
+                  type="button"
+                  aria-label="Previous project"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.92 }}
+                  onClick={showPreviousProject}
+                  className="interactive-card flex h-11 w-11 items-center justify-center rounded-full text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <PiCaretLeftBold aria-hidden="true" />
+                </motion.button>
+                <span className="text-sm tabular-nums text-white/60">
+                  {project.num} / {String(projects.length).padStart(2, "0")}
+                </span>
+                <motion.button
+                  type="button"
+                  aria-label="Next project"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.92 }}
+                  onClick={showNextProject}
+                  className="interactive-card flex h-11 w-11 items-center justify-center rounded-full text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <PiCaretRightBold aria-hidden="true" />
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+
+          <motion.div
+            key={`${project.slug}-image`}
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="order-1 xl:order-2"
+          >
+            <Link
+              href={`/work/${project.slug}`}
+              aria-label={`Read the ${project.title} case study`}
+              className="interactive-card group relative block aspect-[4/3] overflow-hidden rounded-2xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:aspect-[16/10]"
+            >
+              <motion.div
+                whileHover={{ scale: 1.025 }}
+                whileTap={{ scale: 0.99 }}
+                transition={{ duration: 0.3 }}
+                className="relative h-full w-full overflow-hidden rounded-xl"
+              >
                 <Image
                   src={project.image}
                   fill
-                  className="object-contain"
-                  alt={project.title}
+                  sizes="(max-width: 1280px) 100vw, 50vw"
+                  className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.02]"
+                  alt={`${project.title} project preview`}
                 />
-              </div>
-              
-              {/* Navigation Buttons - Left Bottom of Image */}
-              <div className="absolute left-0 bottom-0 flex gap-2 z-20">
-                <button 
-                  type="button"
-                  aria-label="Previous project"
-                  className="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
-                  onClick={handlePrevious}
-                >
-                  <PiCaretLeftBold />
-                </button>
-                <button 
-                  type="button"
-                  aria-label="Next project"
-                  className="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
-                  onClick={handleNext}
-                >
-                  <PiCaretRightBold />
-                </button>
-              </div>
-            </div>
-          </div>
+                <span className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-primary/90 px-4 py-2 text-xs font-medium text-accent opacity-100 shadow-lg transition sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
+                  Explore case study <BsArrowUpRight aria-hidden="true" />
+                </span>
+              </motion.div>
+            </Link>
+          </motion.div>
         </div>
       </div>
-     </div>
     </motion.section>
   );
 }

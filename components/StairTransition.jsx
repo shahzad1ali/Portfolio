@@ -8,12 +8,19 @@ const StairTransition = () => {
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="wait">
-      <div key={pathname}>
-        <div className="h-screen w-screen fixed top-0 left-0 right-0 pointer-events-none z-40 flex">
+    <>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={pathname}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: "easeInOut" }}
+          className="pointer-events-none fixed left-0 right-0 top-0 z-40 flex h-screen w-screen"
+        >
           <Stairs />
-        </div>
-      </div>
+        </motion.div>
+      </AnimatePresence>
       <motion.div 
       className="h-screen w-screen fixed bg-primary top-0 pointer-events-none"
       initial={{ opacity: 1 }}
@@ -22,7 +29,7 @@ const StairTransition = () => {
         transition: { delay: 1, duration: 0.4, ease: "easeInOut" },
       }}
       />
-    </AnimatePresence>
+    </>
   );
 };
 

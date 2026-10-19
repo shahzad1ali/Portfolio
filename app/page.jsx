@@ -10,6 +10,7 @@ import Resume from "@/app/resume/page";
 import Work from "@/app/work/page";
 import Contact from "@/app/contact/page";
 import { Typewriter } from "react-simple-typewriter";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const DownloadCV = () => {
@@ -31,14 +32,30 @@ const Home = () => {
 
   return (
     <>
-      {/* Home Section */}
       <section id="home" className="mt-20 lg:mt-16 h-full min-h-screen">
-        <div className="container mx-auto h-full">
+        <div className="container mx-auto h-full px-4 sm:px-6">
           <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
-            {/* text */}
-            <div className="text-center mt-5 xl:text-left order-2 xl:order-none">
-              <span className="text-xl">Mern Stack Developer</span>
-              <h1 className="h1 mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, staggerChildren: 0.12 }}
+              className="order-2 mt-5 text-center xl:order-none xl:text-left"
+            >
+              <motion.span
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+                className="text-sm uppercase tracking-[0.2em] text-accent sm:text-xl"
+              >
+                Full-Stack Developer
+              </motion.span>
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="h1 mb-6 mt-3"
+              >
                 Hello I'm
                 <br />
                 <span className="text-accent">
@@ -52,20 +69,34 @@ const Home = () => {
                     delaySpeed={1000}
                   />
                 </span>
-              </h1>
+              </motion.h1>
 
-              <p className="max-w-[500px] mb-9 text-white/80">
-                Full Stack Developer with 2 year of experience in building scalable Mern-stack applications using MERN. Developed
-                projects like a real-time mentorship platform, secure LMS. Skilled in RESTful API payment gateways, and real-time features.
-                Passionate about solving complex problems and delivering innovative, user-focused solutions.
-              </p>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45, duration: 0.5 }}
+                className="mx-auto mb-9 max-w-[620px] text-sm leading-7 text-white/75 sm:text-base xl:mx-0"
+              >
+                I build end-to-end web and mobile products, from responsive
+                React and Next.js interfaces to backend APIs, database-backed
+                workflows, and third-party integrations. My project experience
+                includes service marketplaces, driver onboarding, learning
+                platforms, e-commerce, real-time messaging, payments, and
+                location-aware features. I care about clear user journeys,
+                reliable implementation, and details that make software easier
+                to use.
+              </motion.p>
 
-              {/*  Buttons and socials - only visible on mobile */}
-              <div className="flex flex-col xl:flex-row items-center gap-8 lg:hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
+                className="flex flex-col items-center gap-8 lg:hidden xl:flex-row"
+              >
                 <Button
                   variant="outline"
                   size="lg"
-                  className="uppercase flex items-center gap-2"
+                  className="interactive-card flex items-center gap-2 uppercase"
                   onClick={DownloadCV}
                 >
                   <span>Download CV</span>
@@ -77,11 +108,9 @@ const Home = () => {
                     iconStyles="w-9 h-9 border border-accent rounded-full flex justify-center items-center text-accent text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"
                   />
                 </div>
-              </div>
-              {/*  On larger screens, these buttons will be hidden */}
-            </div>
+              </motion.div>
+            </motion.div>
 
-            {/* photo */}
             <div className="order-1 xl:order-none mb-8 xl:mb-0">
               <Photo />
             </div>
@@ -90,23 +119,19 @@ const Home = () => {
         <Stats />
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="min-h-screen">
+      <section id="services">
         <Services />
       </section>
 
-      {/* Resume Section */}
-      <section id="resume" className="min-h-screen">
+      <section id="resume">
         <Resume />
       </section>
 
-      {/* Work Section */}
-      <section id="work" className="min-h-screen">
+      <section id="work">
         <Work />
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="min-h-screen">
+      <section id="contact">
         <Contact />
       </section>
     </>

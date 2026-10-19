@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { FaGithub, FaLinkedinIn, FaYoutube, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
 const socials = [
-  { icon: <FaGithub />, path: "https://github.com/shahzad1ali" },
-  { icon: <FaLinkedinIn />, path: "https://www.linkedin.com/in/shahzad-ali-761444369/" },
-  { icon: <FaYoutube />, path: "https://www.youtube.com/@Shahzad-ali62" },
-  { icon: <FaTwitter />, path: "" },
+  { name: "GitHub", icon: <FaGithub />, path: "https://github.com/shahzad1ali" },
+  { name: "LinkedIn", icon: <FaLinkedinIn />, path: "https://www.linkedin.com/in/shahzad-ali-761444369/" },
+  { name: "YouTube", icon: <FaYoutube />, path: "https://www.youtube.com/@Shahzad-ali62" },
 ];
 
 const Social = ({ containerStyles, iconStyles }) => {
@@ -13,7 +12,14 @@ const Social = ({ containerStyles, iconStyles }) => {
   <div className={containerStyles}>
     {socials.map((item, index) => {
         return (
-            <Link key={index} href={item.path} className={iconStyles}>
+            <Link
+              key={item.name}
+              href={item.path}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit my ${item.name} profile`}
+              className={`interactive-card ${iconStyles}`}
+            >
                 {item.icon}
             </Link>
         );

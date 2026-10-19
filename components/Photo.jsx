@@ -10,24 +10,22 @@ const Photo = () => {
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
-          transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
+          transition: { delay: 0.35, duration: 0.4, ease: "easeIn" },
         }}
       >
-        {/* image  */}
         <motion.div
             initial={{ opacity: 0 }} 
             animate={{
                 opacity: 1,
-                transition: { delay: 2.4, duration: 0.4, ease: "easeInOut" },
+                transition: { delay: 0.4, duration: 0.4, ease: "easeInOut" },
             }}
         className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] mix-blend-lighten rounded-full absolute overflow-hidden"
         >
           <Image
             src="/assets/2.png"
             priority
-            quality={100}
             fill
-            alt=""
+            alt="Portrait of Shahzad Ali"
             className="object-contain -translate-y-12 xl:-translate-y-20"
             style={{
               maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)',
@@ -36,7 +34,6 @@ const Photo = () => {
           />
         </motion.div>
 
-       {/* circle  */}
       <motion.svg
   className="w-[300px] xl:w-[506px] h-[300px] xl:h-[506px]"
   fill="transparent"
