@@ -20,7 +20,7 @@ import {
 const about = {
   title: "About Me",
   description:
-    "I am a Full-Stack Developer who builds complete web products, from responsive React and Next.js interfaces to backend APIs and database-backed workflows. My portfolio includes a location-aware service marketplace, a 17-step driver onboarding platform, a paid learning management system, e-commerce experiences, and mobile applications. I work with Node.js, Django, MySQL, and MongoDB, and have integrated authentication, payments, maps, push and email notifications, and real-time messaging. I focus on turning product requirements into clear user journeys and maintainable features across the stack.",
+    "I am a Full-Stack Developer who builds complete web products, from responsive React and Next.js interfaces to backend APIs and database-backed workflows. My portfolio includes a location-aware service marketplace, a fleet route optimizer, a 17-step driver onboarding platform, a paid learning management system, e-commerce experiences, and mobile applications. I work with Node.js, Django, MySQL, and MongoDB, and have integrated authentication, payments, maps, push and email notifications, and real-time messaging. I focus on turning product requirements into clear user journeys and maintainable features across the stack.",
   info: [
     {
       fieldName: "Name",
@@ -358,6 +358,11 @@ const Resume = () => {
           <span className="font-medium text-white">Driver Transportation:</span>{" "}
           Node.js and MySQL workflows for driver invitations, application
           submissions, administration, and load assignment.
+        </li>
+        <li>
+          <span className="font-medium text-white">Fleet Route Optimizer:</span>{" "}
+          Angular, Leaflet, NestJS, and MySQL with OSRM route optimization for
+          validated multi-stop trips.
         </li>
         <li>
           <span className="font-medium text-white">Other products:</span>{" "}

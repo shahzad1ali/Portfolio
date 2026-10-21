@@ -80,9 +80,10 @@ const Home = () => {
                 I build end-to-end web and mobile products, from responsive
                 React and Next.js interfaces to backend APIs, database-backed
                 workflows, and third-party integrations. My project experience
-                includes service marketplaces, driver onboarding, learning
-                platforms, e-commerce, real-time messaging, payments, and
-                location-aware features. I care about clear user journeys,
+                includes service marketplaces, driver onboarding, fleet route
+                optimization, learning platforms, e-commerce, real-time
+                messaging, payments, and location-aware features. I care about
+                clear user journeys,
                 reliable implementation, and details that make software easier
                 to use.
               </motion.p>
