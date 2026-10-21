@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { BsArrowLeft, BsArrowUpRight, BsGithub } from "react-icons/bs";
+import FleetRoutePreview from "@/components/FleetRoutePreview";
 
 const reveal = {
   hidden: { opacity: 0, y: 24 },
@@ -100,6 +101,8 @@ export default function ProjectCaseStudy({ project }) {
               />
             </div>
           </motion.div>
+
+          {project.slug === "fleet-route-optimizer" && <FleetRoutePreview />}
 
           <motion.section
             variants={{
